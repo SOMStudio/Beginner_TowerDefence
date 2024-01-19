@@ -1,20 +1,25 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("Main")]
     [SerializeField] private int score;
     [SerializeField] private int taskScore = 3;
     [SerializeField] private int health;
+
+    [Header("Spawn")]
+    [SerializeField] private int costGun = 4;
 
     [Header("Enemies")]
     [SerializeField] private List<EnemyManager> enemies;
 
     [Header("Guns")]
-    [SerializeField] private GunManager[] guns;
+    [SerializeField] private List<GunManager> guns;
 
     [Header("Trajectory")]
     [SerializeField] private Transform[] points;
@@ -89,6 +94,7 @@ public class LevelManager : MonoBehaviour
     {
         removeEnemyEvent?.Invoke(enemy);
 
+        AddScore(1);
         enemies.Remove(enemy);
     }
     
@@ -119,6 +125,27 @@ public class LevelManager : MonoBehaviour
         var resulEnemy = FindNearestEnemy(gun);
         
         if (resulEnemy != null) gun.SetTarget(resulEnemy);
+    }
+
+    public void TrySpawnGun(GunBaseManager gunBase)
+    {
+        if (score >= costGun)
+        {
+            AddScore(costGun * -1);
+
+            gunBase.SpawnGun();
+        }
+    }
+
+    public void SpawnGun(GameObject newGun)
+    {
+        var gunManager = newGun.GetComponent<GunManager>();
+        if (gunManager != null)
+        {
+            guns.Add(gunManager);
+            
+            gunManager.needEnemyEvent.AddListener(GunNeedEnemy);
+        }
     }
 
     public void LoadLevel(string nameLevel)

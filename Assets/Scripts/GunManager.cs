@@ -12,7 +12,7 @@ public class GunManager : MonoBehaviour
     [SerializeField] private TimerComponent timerComponent;
 
     [Header("events")]
-    public UnityEvent<GunManager> needEnemy;
+    public UnityEvent<GunManager> needEnemyEvent;
 
     private bool canShoot = true;
     
@@ -32,7 +32,7 @@ public class GunManager : MonoBehaviour
     {
         if (lookAtComponent.target == null)
         {
-            needEnemy?.Invoke(this);
+            needEnemyEvent?.Invoke(this);
             return;
         }
         
