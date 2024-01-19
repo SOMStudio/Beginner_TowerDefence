@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cfc17be85c2977a44878c533622efbd4, type: 2}
+  - {fileID: 2100000, guid: dd012e19f208f79449bca47f22e38cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -195,7 +195,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dd012e19f208f79449bca47f22e38cd3, type: 2}
+  - {fileID: 2100000, guid: cfc17be85c2977a44878c533622efbd4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -268,7 +268,7 @@ MonoBehaviour:
   lookAtComponent: {fileID: 5698314206832498828}
   spawnComponent: {fileID: 7837595390995102364}
   timerComponent: {fileID: 6315907038216578570}
-  needEnemy:
+  needEnemyEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &7837595390995102364
