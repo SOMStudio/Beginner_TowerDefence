@@ -46,9 +46,6 @@ GameObject:
   - component: {fileID: 159740712029648813}
   - component: {fileID: 159740712029648816}
   - component: {fileID: 159740712029648819}
-  - component: {fileID: 159740712029648812}
-  - component: {fileID: 159740712029648811}
-  - component: {fileID: 159740712029648810}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -171,73 +168,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   deathEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &159740712029648812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159740712029648818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02fe88e6645d29049b336d364222ef02, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.5
-  points: []
-  finalPointEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &159740712029648811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159740712029648818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f61b1bfef27d4645b65481b78699d76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  useDestroyAfterTime: 0
-  destroyAfterTime: 5
-  destroyEvent:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &159740712029648810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 159740712029648818}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3adfd01ba40bc134aafd49158672900a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onTriggerEnterEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 159740712029648819}
-        m_TargetAssemblyTypeName: EnemyManager, Assembly-CSharp
-        m_MethodName: TriggerWithObject
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onTriggerStayEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  onTriggerExitEvent:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &159740712054232197

@@ -9,16 +9,16 @@ public class TriggerComponent : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        onTriggerEnterEvent.Invoke(other);
+        onTriggerEnterEvent?.Invoke(other);
     }
 
     private void OnTriggerStay(Collider other)
     {
-        onTriggerStayEvent.Invoke(other);
+        onTriggerStayEvent?.Invoke(other);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        onTriggerExitEvent.Invoke(other);
+        onTriggerExitEvent?.Invoke(other);
     }
 }

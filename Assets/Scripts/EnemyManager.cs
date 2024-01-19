@@ -16,19 +16,46 @@ public class EnemyManager : MonoBehaviour
     public UnityEvent<EnemyManager> reachFinalPointEvent;
     public UnityEvent<EnemyManager> deathEvent;
 
+    private bool initedState;
+    
     private void Awake()
+    {
+        InitComponents();
+    }
+
+    private void Start()
+    {
+        InitState();
+    }
+
+    private void InitComponents()
     {
         if (movePointComponent == null) movePointComponent = GetComponent<MovePointComponent>();
         if (triggerComponent == null) triggerComponent = GetComponent<TriggerComponent>();
         if (destroyComponent == null) destroyComponent = GetComponent<DestroyComponent>();
     }
 
-    private void Start()
+    private void InitState()
     {
-        movePointComponent.finalPointEvent.AddListener(ReachToFinalPoint);
+        if (movePointComponent == null) movePointComponent = gameObject.AddComponent<MovePointComponent>();
+        if (triggerComponent == null) triggerComponent = gameObject.AddComponent<TriggerComponent>();
+        if (destroyComponent == null) destroyComponent = gameObject.AddComponent<DestroyComponent>();
+
+        if (movePointComponent.finalPointEvent == null) movePointComponent.finalPointEvent = new UnityEvent();
+        if (triggerComponent.onTriggerEnterEvent == null) triggerComponent.onTriggerEnterEvent = new UnityEvent<Collider>();
+
+        if (!initedState)
+        {
+            initedState = true;
+            
+            movePointComponent.speed = 0.5f;
+            movePointComponent.finalPointEvent.AddListener(ReachToFinalPoint);
+
+            triggerComponent.onTriggerEnterEvent.AddListener(TriggerWithObject);
+        }
     }
 
-    public void AddHealth(int changeHealth)
+    private void AddHealth(int changeHealth)
     {
         health += changeHealth;
         
@@ -42,11 +69,17 @@ public class EnemyManager : MonoBehaviour
 
     public void SetPoints(Transform[] points)
     {
+        if (movePointComponent == null)
+        {
+            InitComponents();
+            InitState();
+        }
+        
         movePointComponent.points = points;
         movePointComponent.Run(true);
     }
-    
-    public void TriggerWithObject(Collider other)
+
+    private void TriggerWithObject(Collider other)
     {
         AddHealth(-1);
     }
