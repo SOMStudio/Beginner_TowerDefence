@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private MovePointComponent movePointComponent;
     [SerializeField] private TriggerComponent triggerComponent;
     [SerializeField] private DestroyComponent destroyComponent;
+    [SerializeField] private Slider healthSlider;
 
     [Header("Events")]
     public UnityEvent<EnemyManager> reachFinalPointEvent;
+    public UnityEvent<int> helthChangeEvent;
     public UnityEvent<EnemyManager> deathEvent;
 
     private bool initedState;
@@ -58,7 +61,9 @@ public class EnemyManager : MonoBehaviour
     private void AddHealth(int changeHealth)
     {
         health += changeHealth;
-        
+
+        helthChangeEvent.Invoke(health);
+
         if (health <= 0)
         {
             deathEvent?.Invoke(this);
@@ -89,5 +94,10 @@ public class EnemyManager : MonoBehaviour
         reachFinalPointEvent?.Invoke(this);
         
         destroyComponent.DestroyGameObject();
+    }
+
+    public void ChangeHelth(int health)
+    {
+        healthSlider.value = health;
     }
 }
